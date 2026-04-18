@@ -5,7 +5,7 @@
 .env.*
 node_modules
 .next/
-Dockerfile
-.dockerignore
+
+
 npm-debug.log
 README.md
