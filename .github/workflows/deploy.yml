@@ -45,7 +45,9 @@ jobs:
 
       # 5. 连接真实的云服务器，把新打好包的 K8s 面板更新上去（极简远程控制）
       # 占位符提示：在 GitHub Secrets 配置你的云服务器 IP、用户名 和 私钥
+      # 【注意】因为你目前还没有云服务器，这里暂时加了 if: false 跳过这一步，等你买了服务器再把这行删掉
       - name: Deploy to Server via SSH
+        if: false
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SERVER_HOST }}
