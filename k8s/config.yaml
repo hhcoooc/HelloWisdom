@@ -1,0 +1,26 @@
+# 这是基础的配置和密码保险箱。
+# 需要它是因为可以做到“代码和配置分离”，你改密码或 IP 时不需要重新打包镜像。
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mystudyplant-config
+data:
+  # Next.js 服务端 SSR 直连后端的内网地址（绕过外网和 Ingress，极速且避免 Invalid URL）
+  INTERNAL_API_URL: "http://backend-svc:8080"
+  
+  # 后端数据库和缓存连接地址
+  # 占位符提示：若后续用火山云 RDS/Redis，换成云厂商给的内网地址
+  SPRING_DATASOURCE_URL: "jdbc:postgresql://postgres-svc:5432/mystudyplant"
+  SPRING_DATA_REDIS_HOST: "redis-svc"
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mystudyplant-secret
+type: Opaque
+stringData:
+  # 占位符提示：这里填入明文的高强度密码，K8s 会自动帮你处理加密并注入给 Pod
+  db-password: ${DB_PASSWORD}
+  redis-password: ${REDIS_PASSWORD}

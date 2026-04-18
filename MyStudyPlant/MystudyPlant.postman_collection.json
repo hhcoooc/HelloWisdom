@@ -1,0 +1,548 @@
+{
+  "info": {
+    "_postman_id": "b1cd743a-a2fe-4348-9d15-0ad7708f6269",
+    "name": "MystudyPlant",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "43151202",
+    "_collection_link": "https://go.postman.co/collection/43151202-b1cd743a-a2fe-4348-9d15-0ad7708f6269?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Article",
+      "item": [
+        {
+          "name": "publish",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "studytoken",
+                "value": "",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"title\":\"我是adminNumber1\",\r\n    \"content\":\"初来乍到，请多指教\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/article/publish",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "article",
+                "publish"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "list",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/article/list?page=1&size=2",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "article",
+                "list"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "size",
+                  "value": "2"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "detail",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/article/12",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "article",
+                "12"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "like",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "studytoken",
+                "value": "8b6ba686-1c1e-4909-bc39-29d6660122d4",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/article/like/13",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "article",
+                "like",
+                "13"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "postComment",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "studytoken",
+                "value": "36d84d5b-7fc9-4c59-8567-00dbd1511c11",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/comments/publish",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "article",
+                "1",
+                "comment"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getComment",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/comments/18/comments",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "comments",
+                "18",
+                "comments"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "feed",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "",
+                "value": "",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/article/feed?cursor=4&size=2",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "article",
+                "feed"
+              ],
+              "query": [
+                {
+                  "key": "cursor",
+                  "value": "4"
+                },
+                {
+                  "key": "size",
+                  "value": "2"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "health",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "studytoken",
+                "value": "36d84d5b-7fc9-4c59-8567-00dbd1511c11",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/actuator/health",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "actuator",
+                "health"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "search",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/article/search?keyword=第一",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "article",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "keyword",
+                  "value": "第一"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/article/delete/14",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "article",
+                "delete",
+                "14"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "favourite",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "studytoken",
+                "value": "4a431af2-b7dc-4945-b350-75fbef42c9f2",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/favorites/13/toggle",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "favorites",
+                "13",
+                "toggle"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "MinIO",
+      "item": [
+        {
+          "name": "uploadPicture",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "studytoken",
+                "value": "32df960b-585b-443e-ab8d-9359bed7b15c",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "uuid": "86c688af-f1b8-4883-90d0-5168788b12fb",
+                  "src": "/D:/Test.png"
+                },
+                {
+                  "key": "category",
+                  "value": "draft_attachment",
+                  "type": "text",
+                  "uuid": "9423329a-11db-42f6-a91c-fe80d63a7c14"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/files/upload",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "files",
+                "upload"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Notification",
+      "item": [
+        {
+          "name": "unread",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "studytoken",
+                "value": "218135d9-49b2-49ea-b914-dc9f5d9b10a3",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/notifications/unread",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "notifications",
+                "unread"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "list",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "studytoken",
+                "value": "218135d9-49b2-49ea-b914-dc9f5d9b10a3",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/notifications/list",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "notifications",
+                "list"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "read",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "studytoken",
+                "value": "218135d9-49b2-49ea-b914-dc9f5d9b10a3",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/notifications/read",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "notifications",
+                "read"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "register",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"username\":\"adminNumber1\",\r\n    \"password\":\"12345\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/users/register",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "users",
+            "register"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "login",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "username",
+              "value": "admin",
+              "type": "text",
+              "uuid": "8edc5ae8-3350-4317-a5fb-6ad0eae9442e"
+            },
+            {
+              "key": "password",
+              "value": "1234",
+              "type": "text",
+              "uuid": "f11870da-7f50-4c92-91ae-662787599ab2"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{baseUrl}}/users/login",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "users",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "avatar",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "studytoken",
+            "value": "bcaf376d-101e-4f1d-9514-e476b3457ddc",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "file",
+              "type": "file",
+              "uuid": "5c78afd4-3b30-468d-8894-c1d39ca9fdbb",
+              "src": "/D:/Test.png"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{baseUrl}}/users/avatar",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "users",
+            "avatar"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "studytoken",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ]
+}

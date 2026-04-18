@@ -1,0 +1,89 @@
+version: '3.8'
+
+# 定义自定义网络
+# 因为自定义网络自带内置 DNS 解析，我们的前后端容器可以直接用服务名互相访问（比如 backend 可以直接连 postgres_db:5432）
+networks:
+  mystudyplant_net:
+    driver: bridge
+
+# 定义数据卷
+# 因为如果不做持久化，容器一旦重启或删除，数据库里的文章和缓存状态就全丢了
+volumes:
+  postgres_data:
+  redis_data:
+
+services:
+  # 数据库服务 PostgreSQL
+  # 因为它是我们的主力关系型数据库，用于存储博客文章和用户等核心数据
+  postgres_db:
+    image: postgres:15-alpine
+    container_name: mystudyplant_postgres
+    restart: always
+    environment:
+      # 占位符提示：请在此替换真实的数据库密码，当前带默认值方便本地直接跑起来
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-root123}
+      POSTGRES_DB: mystudyplant
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - mystudyplant_net
+
+  # 缓存服务 Redis
+  # 因为它负责高频数据的极速读取以及 Sa-Token 的免密与会话状态存储
+  redis_cache:
+    image: redis:7-alpine
+    container_name: mystudyplant_redis
+    restart: always
+    # 占位符提示：请替换高强度缓存密码
+    command: redis-server --requirepass ${REDIS_PASSWORD:-redis123}
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - mystudyplant_net
+
+  # 后端服务 Spring Boot
+  # 因为它提供核心的 API 业务逻辑，等待 DB 和 Redis 启动后再运行
+  backend:
+    build:
+      context: ./MyStudyPlant
+      dockerfile: Dockerfile
+    container_name: mystudyplant_backend
+    restart: always
+    depends_on:
+      - postgres_db
+      - redis_cache
+    environment:
+      # 占位符提示：生产环境必须替换成你自己的高强度密码，这里会自动覆盖 application.yml 里的配置
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres_db:5432/mystudyplant
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD:-root123}
+      SPRING_DATA_REDIS_HOST: redis_cache
+      SPRING_DATA_REDIS_PORT: 6379
+      SPRING_DATA_REDIS_PASSWORD: ${REDIS_PASSWORD:-redis123}
+    ports:
+      - "8080:8080"
+    networks:
+      - mystudyplant_net
+
+  # 前端服务 Next.js
+  # 因为它是直接面对用户的 Web UI，依赖于后端 API 服务提供数据
+  frontend:
+    build:
+      context: ./mystudyplant-web
+      dockerfile: Dockerfile
+    container_name: mystudyplant_frontend
+    restart: always
+    depends_on:
+      - backend
+    environment:
+      # 占位符提示：客户端直接调用的 API 根地址，本地测试指向 localhost，正式上线需要换成真实的外网域名
+      NEXT_PUBLIC_API_URL: ${API_URL:-http://localhost:8080}
+    ports:
+      - "3000:3000"
+    networks:
+      - mystudyplant_net

@@ -1,0 +1,39 @@
+# 这是整个系统的流量入海口配置（Nginx Ingress）。
+# 需要它是因为 Service 只是集群内部能互相认识，要让全世界用真实域名访问到你，必须有个网关负责查户口和分发流量，这里我们顺手把 Brotli/Gzip 网络压缩做了。
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: mystudyplant-ingress
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    
+    # 网络压缩优化：关闭 gzip，开启性能更好的 brotli 压缩
+    nginx.ingress.kubernetes.io/use-gzip: "false"
+    nginx.ingress.kubernetes.io/enable-brotli: "true" 
+    
+    # 如果接口上传文章涉及到大图片，需要解放请求包限制
+    nginx.ingress.kubernetes.io/proxy-body-size: "50m"
+
+spec:
+  rules:
+    # 占位符提示：改为你购买注册好的真实博客域名。同域部署解决前端跨域和构建环境变量陷阱
+    - host: www.yourdomain.com
+      http:
+        paths:
+          # 首先匹配 /api，将其全部转发给后端 Java 接口
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: backend-svc
+                port:
+                  number: 8080
+          # 其他所有的访问路径统统交给前端 Next.js 渲染页面
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: frontend-svc 
+                port:
+                  number: 3000

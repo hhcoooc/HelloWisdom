@@ -1,0 +1,61 @@
+# 这是整个项目的自动流水线配置（CI/CD）。
+# 需要它是因为：以后你每一次向 master 分支 push 代码，GitHub 都会自动帮你打包新镜像并发布到服务器，彻底告别手动黑框敲命令。
+
+name: MyStudyPlant CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - master
+      - main # 兼容有的仓库主分支叫 main 的情况
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      # 1. 把你的最新代码拉取到 GitHub 的临时打包服务器上
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      # 2. 登录到你的镜像仓库（这里默认演示大家都用的 Docker Hub，也可以换成阿里云/腾讯云镜像库）
+      # 占位符提示：需要在 GitHub 仓库的 Settings -> Secrets 中提前配置好 DOCKER_USERNAME 和 DOCKER_PASSWORD
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      # 3. 自动构建并推送前台镜像到你的远端仓库
+      # 占位符提示：把你镜像名字前缀换成你自己的，如 yourname/mystudyplant-frontend
+      - name: Build and push Frontend image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./mystudyplant-web
+          push: true
+          tags: ${{ secrets.DOCKER_USERNAME }}/mystudyplant-frontend:latest
+
+      # 4. 自动构建并推送后台镜像到远端仓库
+      - name: Build and push Backend image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./MyStudyPlant
+          push: true
+          tags: ${{ secrets.DOCKER_USERNAME }}/mystudyplant-backend:latest
+
+      # 5. 连接真实的云服务器，把新打好包的 K8s 面板更新上去（极简远程控制）
+      # 占位符提示：在 GitHub Secrets 配置你的云服务器 IP、用户名 和 私钥
+      - name: Deploy to Server via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          # 连接成功后触发远程服务器帮你把镜像重新拉取，并重跑一遍最新配置
+          script: |
+            # 如果你跑的是纯 Docker Compose：
+            # cd /path/to/your/project && docker-compose pull && docker-compose up -d
+            
+            # 如果你已经进阶到 Kubernetes (我们的第2套方案)：
+            kubectl rollout restart deployment backend-deployment
+            kubectl rollout restart deployment frontend-deployment

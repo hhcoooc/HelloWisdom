@@ -1,0 +1,82 @@
+server:
+  port: 14713
+
+spring:
+  mail:
+    host: smtp.qq.com
+    username: ipziunvw420850@qq.com
+    password: xxx
+    properties:
+      mail.smtp.ssl.enable: true
+  datasource:
+    url: jdbc:postgresql://localhost:5432/mystudyplant
+    username: postgres
+    password: xxx
+    driver-class-name: org.postgresql.Driver
+  elasticsearch:
+    uris: http://localhost:9200
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      password: xxx
+      database: 0
+      timeout: 5000ms
+  servlet:
+    multipart:
+      max-file-size: 10MB       # 单个文件最大大�?      max-request-size: 50MB    # 整个请求的最大大小，支持多文件上传时总大小限�?
+sa-token:
+  token-name: studytoken
+  timeout: 25920000
+  active-timeout: -1
+  is-concurrent: true
+  is-share: true
+  is-read-cookie: true
+  is-read-header: true
+  debug: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: prometheus, health, info
+  metrics:
+    tags:
+      application: MyStudyPlant
+  endpoint:
+    health:
+      show-details: always
+
+minio:
+  endpoint: http://127.0.0.1:9000
+  access-key: tkdawenhao
+  secret-key: xxx
+  bucket-name: studyplant-data
+  secure: false
+  region: us-east-1
+
+logging:
+  level:
+    # 开�?ES 底层请求追踪
+    tracer: TRACE
+
+ai:
+  siliconflow:
+    api-key: xxx
+
+crawler:
+  # 假网文发布的作者ID，需要是数据�?user 表里真实存在�?ID
+  author-id: 7
+
+github:
+  token: "xxx" # 请在这里填入你申请的 GitHub Classic Token (什么权限都不用�?
+
+

@@ -1,0 +1,132 @@
+{
+	"controlpoint" : 
+	[
+		{
+			"flags" : 0,
+			"id" : 0,
+			"offset" : "0 0 0"
+		},
+		{
+			"flags" : 0,
+			"id" : 1,
+			"offset" : "0 0 0"
+		},
+		{
+			"flags" : 0,
+			"id" : 2,
+			"offset" : "0 0 0"
+		},
+		{
+			"flags" : 0,
+			"id" : 3,
+			"offset" : "0 0 0"
+		},
+		{
+			"flags" : 0,
+			"id" : 4,
+			"offset" : "0 0 0"
+		},
+		{
+			"flags" : 0,
+			"id" : 5,
+			"offset" : "0 0 0"
+		},
+		{
+			"flags" : 0,
+			"id" : 6,
+			"offset" : "0 0 0"
+		},
+		{
+			"flags" : 0,
+			"id" : 7,
+			"offset" : "0 0 0"
+		}
+	],
+	"emitter" : 
+	[
+		{
+			"distancemax" : 6,
+			"distancemin" : 0,
+			"id" : 7,
+			"name" : "sphererandom",
+			"rate" : 50
+		}
+	],
+	"initializer" : 
+	[
+		{
+			"exponent" : 1,
+			"id" : 2,
+			"max" : 4,
+			"min" : 3,
+			"name" : "lifetimerandom"
+		},
+		{
+			"id" : 3,
+			"max" : 190,
+			"min" : 160,
+			"name" : "sizerandom"
+		},
+		{
+			"id" : 4,
+			"max" : "59 66 64",
+			"min" : "59 66 64",
+			"name" : "colorrandom"
+		},
+		{
+			"id" : 5,
+			"name" : "turbulentvelocityrandom",
+			"phasemax" : 0.5,
+			"scale" : 0.1,
+			"speedmax" : 250,
+			"speedmin" : 250,
+			"timescale" : 0.5
+		},
+		{
+			"id" : 6,
+			"max" : "0 0 2.000007696445342",
+			"name" : "rotationrandom"
+		}
+	],
+	"material" : "materials/presets/smoke2.json",
+	"maxcount" : 200,
+	"operator" : 
+	[
+		{
+			"drag" : 0.89999998,
+			"gravity" : "-90 0 0",
+			"id" : 8,
+			"name" : "movement"
+		},
+		{
+			"fadeintime" : 0.2,
+			"fadeouttime" : 0.05,
+			"id" : 9,
+			"name" : "alphafade"
+		},
+		{
+			"endvalue" : 1,
+			"id" : 10,
+			"name" : "sizechange",
+			"starttime" : 0.5,
+			"startvalue" : 0.30000001
+		},
+		{
+			"endtime" : 0.60000002,
+			"endvalue" : "0.23137254901960785 0.26666666666666666 0.28627450980392155",
+			"id" : 11,
+			"name" : "colorchange",
+			"starttime" : 0.5,
+			"startvalue" : "0.23137254901960785 0.25882352941176473 0.25098039215686274"
+		}
+	],
+	"renderer" : 
+	[
+		{
+			"id" : 1,
+			"name" : "sprite"
+		}
+	],
+	"sequencemultiplier" : 2,
+	"starttime" : 0
+}

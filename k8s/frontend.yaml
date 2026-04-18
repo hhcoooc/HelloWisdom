@@ -1,0 +1,41 @@
+# 这是前端服务的守卫与路标。
+# 和后端一样，它负责保证 Next.js 永远存活，并且提供固定的通信口。
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: frontend
+          # 占位符提示：换成你的前端产物镜像名称
+          image: my-registry.com/mystudyplant/frontend:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+          env:
+            - name: INTERNAL_API_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: mystudyplant-config
+                  key: INTERNAL_API_URL
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-svc
+spec:
+  ports:
+    - port: 3000
+      targetPort: 3000
+  selector:
+    app: frontend

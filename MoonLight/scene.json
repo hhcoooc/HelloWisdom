@@ -1,0 +1,231 @@
+{
+	"camera" : 
+	{
+		"center" : "163.08762 -172.19667 -1.00000",
+		"eye" : "163.08762 -172.19667 0.00000",
+		"up" : "0.00000 1.00000 0.00000"
+	},
+	"general" : 
+	{
+		"ambientcolor" : "0.30000 0.30000 0.30000",
+		"bloom" : false,
+		"bloomhdrfeather" : 0.1,
+		"bloomhdriterations" : 8,
+		"bloomhdrscatter" : 1.619,
+		"bloomhdrstrength" : 2.0,
+		"bloomhdrthreshold" : 1.0,
+		"bloomstrength" : 2.0,
+		"bloomthreshold" : 0.64999998,
+		"bloomtint" : "1.00000 1.00000 1.00000",
+		"camerafade" : true,
+		"cameraparallax" : false,
+		"cameraparallaxamount" : 0.5,
+		"cameraparallaxdelay" : 0.1,
+		"cameraparallaxmouseinfluence" : 0.5,
+		"camerapreview" : true,
+		"camerashake" : false,
+		"camerashakeamplitude" : 0.5,
+		"camerashakeroughness" : 1.0,
+		"camerashakespeed" : 3.0,
+		"clearcolor" : "0.70000 0.70000 0.70000",
+		"clearenabled" : true,
+		"farz" : 10000.0,
+		"fov" : 50.0,
+		"hdr" : false,
+		"nearz" : 0.0099999998,
+		"orthogonalprojection" : 
+		{
+			"height" : 2160,
+			"width" : 3840
+		},
+		"perspectiveoverridefov" : 95.0,
+		"skylightcolor" : "0.30000 0.30000 0.30000",
+		"zoom" : 1.0
+	},
+	"objects" : 
+	[
+		{
+			"castshadow" : false,
+			"id" : 16,
+			"image" : "models/月光下的德累斯顿.json",
+			"locktransforms" : true,
+			"name" : "月光下的德累斯顿",
+			"origin" : "1920.00000 1080.00000 0.00000",
+			"size" : "3840.00000 2160.00000"
+		},
+		{
+			"castshadow" : false,
+			"effects" : 
+			[
+				{
+					"file" : "effects/waterripple/effect.json",
+					"id" : 44,
+					"name" : "",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"animationspeed" : 0.050000001,
+								"ratio" : 4.9000001,
+								"ripplestrength" : 0.039999999,
+								"scale" : 2.3399999,
+								"scrolldirection" : -0.045055784,
+								"scrollspeed" : 0.0
+							},
+							"id" : 45,
+							"textures" : [ null, null, "effects/waterripplenormal" ]
+						}
+					],
+					"visible" : true
+				}
+			],
+			"id" : 41,
+			"image" : "models/月光下的德累斯顿11.json",
+			"name" : "月光下的德累斯顿11",
+			"origin" : "1920.00000 1080.00000 0.00000",
+			"size" : "3840.00000 2278.00000"
+		},
+		{
+			"angles" : "0.00000 -0.00000 0.58534",
+			"id" : 19,
+			"instanceoverride" : 
+			{
+				"id" : 20,
+				"size" : 1.1,
+				"speed" : 0.34999999
+			},
+			"name" : "Ember small",
+			"origin" : "1330.22998 514.86493 0.00000",
+			"particle" : "particles/presets/ember_small.json",
+			"scale" : "0.30000 0.30000 0.30000"
+		},
+		{
+			"angles" : "0.00000 -0.00000 0.53766",
+			"id" : 39,
+			"instanceoverride" : 
+			{
+				"id" : 40,
+				"speed" : 0.30000001
+			},
+			"name" : "Ember small",
+			"origin" : "1183.03235 553.73755 0.00000",
+			"particle" : "particles/presets/ember_small.json",
+			"scale" : "0.27299 0.27299 0.27299"
+		},
+		{
+			"id" : 198,
+			"maxtime" : 5.0,
+			"mintime" : 1.0,
+			"muteineditor" : false,
+			"name" : "BGM.MP3",
+			"playbackmode" : "loop",
+			"sound" : [ "sounds/BGM.MP3" ],
+			"startsilent" : false,
+			"volume" : 1.0
+		},
+		{
+			"id" : 199,
+			"maxtime" : 5.0,
+			"mintime" : 1.0,
+			"muteineditor" : false,
+			"name" : "Ludwig van Beethoven - Adagio Cantabile from Sonat.MP3",
+			"playbackmode" : "loop",
+			"sound" : [ "sounds/Ludwig van Beethoven - Adagio Cantabile from Sonat.MP3" ],
+			"startsilent" : false,
+			"volume" : 0.34999999
+		},
+		{
+			"castshadow" : false,
+			"id" : 58,
+			"image" : "models/weigan.json",
+			"name" : "weigan",
+			"origin" : "1920.00000 1080.00000 0.00000",
+			"size" : "3840.00000 2278.00000"
+		},
+		{
+			"castshadow" : false,
+			"effects" : 
+			[
+				{
+					"file" : "effects/waterwaves/effect.json",
+					"id" : 147,
+					"name" : "",
+					"passes" : 
+					[
+						{
+							"constantshadervalues" : 
+							{
+								"direction" : -1.5183272,
+								"exponent" : 1,
+								"scale" : 83.339996,
+								"speed" : 3.1300001,
+								"strength" : 0.13
+							},
+							"id" : 148,
+							"textures" : [ null, "masks/waterwaves_mask_1d3c4269" ]
+						}
+					],
+					"visible" : true
+				}
+			],
+			"id" : 64,
+			"image" : "models/qizi.json",
+			"name" : "qizi",
+			"origin" : "973.24158 993.83276 0.00000",
+			"size" : "376.00000 154.00000"
+		},
+		{
+			"id" : 60,
+			"instanceoverride" : 
+			{
+				"alpha" : 0.050000001,
+				"colorn" : "0.23137 0.25098 0.25098",
+				"count" : 0.47999999,
+				"id" : 61,
+				"rate" : 0.52999997,
+				"size" : 0.92000002,
+				"speed" : 0.27000001
+			},
+			"name" : "一缕烟雾",
+			"origin" : "2575.44019 902.40894 0.00000",
+			"particle" : "particles/presets/smoke2.json",
+			"scale" : "0.62703 0.39191 0.87477"
+		},
+		{
+			"id" : 135,
+			"instanceoverride" : 
+			{
+				"alpha" : 0.02,
+				"colorn" : "0.23137 0.25882 0.25098",
+				"count" : 0.82999998,
+				"id" : 136,
+				"rate" : 0.89999998,
+				"size" : 1.15,
+				"speed" : 0.31999999
+			},
+			"name" : "一缕烟雾",
+			"origin" : "2168.02417 885.19891 0.00000",
+			"particle" : "particles/presets/smoke2.json",
+			"scale" : "0.46333 0.49445 1.00000"
+		},
+		{
+			"id" : 176,
+			"instanceoverride" : 
+			{
+				"alpha" : 0.02,
+				"colorn" : "0.28627 0.34118 0.34118",
+				"count" : 1.23,
+				"id" : 177,
+				"rate" : 0.60000002,
+				"size" : 0.75,
+				"speed" : 0.31999999
+			},
+			"name" : "一缕烟雾",
+			"origin" : "2191.53857 891.22058 0.00000",
+			"particle" : "particles/presets/smoke2.json",
+			"scale" : "0.48055 0.51053 1.00000"
+		}
+	],
+	"version" : 3
+}

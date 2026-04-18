@@ -1,0 +1,8 @@
+# 忽略由于本机 IDE 或历史构建产生的多余文件
+.idea/
+.vscode/
+target/
+*.iml
+HELP.md
+MystudyPlant.postman_collection.json
+.git/
